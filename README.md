@@ -57,6 +57,8 @@ Copy/Paste the [iRule](https://github.com/ns-bretts/netskope-epot-bigip-steering
 
 Create the BIG-IP Explicit Proxy. The configuration below uses the same IP as the Netskope EPoT in section **4.2. Explicit Proxy over Tunnel (EPoT)** of [Netskope GRE configuration for BIG-IP](https://github.com/ns-bretts/netskope-gre-bigip). But the port has been changed to 8080. All Explicit Proxy traffic should target this Explicit Proxy IP:Port to take advantage of the advanced steering.
 
+Change the DNS server and Explicit Proxy IP to match your environment.
+
 ```
 create net dns-resolver proxy_dns_resolver forward-zones replace-all-with { . { nameservers replace-all-with { 10.1.30.31:53 10.1.30.32:53 } } }
 create net tunnels tunnel proxy_tcp_tunnel { profile tcp-forward }
