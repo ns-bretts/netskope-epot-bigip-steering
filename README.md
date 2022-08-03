@@ -6,10 +6,10 @@ The solution adds advanced steering options, that would typically be used in Pro
 
 It supports the following scenarios in the following order of precedence:
 
-- Destination IP address matches a non-routable local network (RFC1918, Link-Local, CGNAT etc) specificed in the "local_networks_dg" data-group.
+- Destination IP address matches a non-routable local network (RFC1918, Link-Local, CGNAT etc) specified in the "local_networks_dg" data-group.
   - The BIG-IP will act as the Explicit Proxy and process the HTTP/s request.
 
-- The local DNS resolver has Split DNS zones where "A" records exist in both RFC1918 and non-RFC1918 space.
+- The local DNS resolver has Split DNS zones where "A" records exist in both RFC1918 and non-RFC1918 space. The Domain or FQDN must be added to the "split_dns_dg" for the DNS resolution to occur.
   - The BIG-IP will perform a DNS resolution with the local DNS resolver.
   - If an "A" record is returned and the IP address matches the "local_networks_dg" data-group:
     - The BIG-IP will act as the Explicit Proxy and process the HTTP/s request.
