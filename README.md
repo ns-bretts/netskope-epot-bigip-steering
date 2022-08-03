@@ -1,18 +1,30 @@
 # Netskope EPoT Steering using BIG-IP to replace PAC files
 
-This solution works in conjunction with [Netskope GRE configuration for BIG-IP](https://github.com/ns-bretts/netskope-gre-bigip). It is assumed you have already deployed GRE tunnel configuration and section **4.2. Explicit Proxy over Tunnel (EPoT)**.
+This solution works in conjunction with [Netskope GRE configuration for BIG-IP](https://github.com/ns-bretts/netskope-gre-bigip). It's assumed you have already deployed GRE tunnel configuration and section **4.2. Explicit Proxy over Tunnel (EPoT)**.
 
 The solution adds advanced steering options, that would typically be used in Proxy Auto-Configuration (PAC) files. This solution can be used when the Explicit Proxy configuration has been "hard coded" to a device/server or doesn't support PAC files.
 
-It supports the following scenarios:
+It supports the following scenarios in the following order of precedence:
 
 - Destination IP address matches a non-routable local network (RFC1918, Link-Local, CGNAT etc) specificed in the "local_networks_dg" data-group.
-  - The BIG-IP will act as the Explicit Proxy and process the traffic.
-- The local DNS resolver has Split DNS zones where zones exist in both RFC1918 and non-RFC1918.
-  - The BIG-IP will perform a DNS resolution with the local DNS resolver
-  - If an "A" record is returned and the IP address matches the "local_networks_dg" data-group.
-    - - The BIG-IP will act as the Explicit Proxy and process the traffic.
+  - The BIG-IP will act as the Explicit Proxy and process the HTTP/s request.
 
+- The local DNS resolver has Split DNS zones where "A" records exist in both RFC1918 and non-RFC1918 space.
+  - The BIG-IP will perform a DNS resolution with the local DNS resolver.
+  - If an "A" record is returned and the IP address matches the "local_networks_dg" data-group:
+    - The BIG-IP will act as the Explicit Proxy and process the HTTP/s request.
+  - If the "A" record does not match OR NXDOMAIN:
+    - Send the HTTP/s request to the Netskope EPoT and process the HTTP/s request.
+
+- Source IP addresses (10.1.1.1) or Networks (10.0.0.0/8) match the "source_ip_steering_dg".
+   - IP or CIDR is this data-group with a value of "0" will be steered to Netskope EPoT.
+   - IP or CIDR is this data-group with a value of "1" will be processed by the BIG-IP Explicit Proxy.
+
+- Domains (example.com will match exact and .example.com) or FQDNs (www.example.com) match the "fqdn_steering_dg".
+   - Any Domain or FQDN is this data-group with a value of "0" will be steered to Netskope.
+   - Any Domain or FQDN is this data-group with a value of "1" will be processed by the BIG-IP Explicit Proxy.
+
+Note: The default steering behaviour is to steer all traffic to Netskope EPoT.
 
 ## Data-Groups
 ```
