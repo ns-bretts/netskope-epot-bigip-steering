@@ -1,6 +1,6 @@
 #**
 #** Name   : netskope_steering_irule
-#** Author : bretts@netskope.com
+#** Author : Brett Smith (ns-bretts)
 #** Description: Steer connections to Netskope EPoT
 #**
 
