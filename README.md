@@ -28,7 +28,7 @@ Note: The default steering behaviour is to steer all traffic to Netskope EPoT.
 
 ## Data-Groups
 
-The following data-groups are required by the [iRule] (https://github.com/ns-bretts/netskope-epot-bigip-steering/blob/main/netskope_steering_irule.tcl)
+The following data-groups are required by the [iRule](https://github.com/ns-bretts/netskope-epot-bigip-steering/blob/main/netskope_steering_irule.tcl)
 
 ```
 create ltm data-group internal local_networks_dg type ip
@@ -51,7 +51,7 @@ modify ltm data-group internal local_networks_dg records add { 240.0.0.0/4 { dat
 
 ## iRule
 
-Copy/Paste the [iRule] (https://github.com/ns-bretts/netskope-epot-bigip-steering/blob/main/netskope_steering_irule.tcl) into the BIG-IP. The Explicit Proxy configuration below assumes the iRule is called "netskope_steering_irule".
+Copy/Paste the [iRule](https://github.com/ns-bretts/netskope-epot-bigip-steering/blob/main/netskope_steering_irule.tcl) into the BIG-IP. The Explicit Proxy configuration below assumes the iRule is called "netskope_steering_irule".
 
 ## BIG-IP Explicit Proxy
 
