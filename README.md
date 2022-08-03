@@ -7,14 +7,14 @@ The solution adds advanced steering options, that would typically be used in Pro
 It supports the following scenarios in the following order of precedence:
 
 - Destination IP address matches a non-routable local network (RFC1918, Link-Local, CGNAT etc) specified in the "local_networks_dg" data-group.
-  - The BIG-IP will act as the Explicit Proxy and process the HTTP/s request.
+  - The BIG-IP will act as the Explicit Proxy and process the HTTP/S request.
 
 - The local DNS resolver has Split DNS zones where "A" records exist in both RFC1918 and non-RFC1918 space. The Domain or FQDN must be added to the "split_dns_dg" for the DNS resolution to occur.
   - The BIG-IP will perform a DNS resolution with the local DNS resolver.
   - If an "A" record is returned and the IP address matches the "local_networks_dg" data-group:
-    - The BIG-IP will act as the Explicit Proxy and process the HTTP/s request.
+    - The BIG-IP will act as the Explicit Proxy and process the HTTP/S request.
   - If the "A" record does not match OR NXDOMAIN:
-    - Send the HTTP/s request to the Netskope EPoT and process the HTTP/s request.
+    - Send to the Netskope EPoT and process the HTTP/S request.
 
 - Source IP addresses (10.1.1.1) or Networks (10.0.0.0/8) match the "source_ip_steering_dg".
    - IP or CIDR is this data-group with a value of "0" will be steered to Netskope EPoT.
