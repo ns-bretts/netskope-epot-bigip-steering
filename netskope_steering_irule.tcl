@@ -1,7 +1,7 @@
 #**
 #** Name   : netskope_steering_irule
 #** Author : bretts@netskope.com
-#** Description: Used to steer connections to Netskope EPoT replacing PAC files
+#** Description: Steer connections to Netskope EPoT
 #**
 
 when RULE_INIT {
