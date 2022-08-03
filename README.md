@@ -26,7 +26,7 @@ It supports the following scenarios in the following order of precedence:
 
 Note: The default steering behaviour is to steer all traffic to Netskope EPoT.
 
-## Data-Groups
+## 1. Data-Groups
 
 The following data-groups are required by the [iRule](https://github.com/ns-bretts/netskope-epot-bigip-steering/blob/main/netskope_steering_irule.tcl)
 
@@ -49,11 +49,11 @@ modify ltm data-group internal local_networks_dg records add { 203.0.113.0/24 { 
 modify ltm data-group internal local_networks_dg records add { 240.0.0.0/4 { data RFC1112 } }
 ```
 
-## iRule
+## 2. iRule
 
 Copy/Paste the [iRule](https://github.com/ns-bretts/netskope-epot-bigip-steering/blob/main/netskope_steering_irule.tcl) into the BIG-IP. The Explicit Proxy configuration below assumes the iRule is called "netskope_steering_irule".
 
-## BIG-IP Explicit Proxy
+## 3. BIG-IP Explicit Proxy
 
 Create the BIG-IP Explicit Proxy. The configuration below uses the same IP as the Netskope EPoT in section **4.2. Explicit Proxy over Tunnel (EPoT)** of [Netskope GRE configuration for BIG-IP](https://github.com/ns-bretts/netskope-gre-bigip). But the port has been changed to 8080. All Explicit Proxy traffic should target this Explicit Proxy IP:Port to take advantage of the advanced steering.
 
