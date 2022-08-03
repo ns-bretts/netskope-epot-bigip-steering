@@ -1,6 +1,17 @@
 # Netskope EPoT Steering using BIG-IP to replace PAC files
 
+This solution works in conjunction with [Netskope GRE configuration for BIG-IP](https://github.com/ns-bretts/netskope-gre-bigip). It is assumed you have already deployed GRE tunnel configuration and section **4.2. Explicit Proxy over Tunnel (EPoT)**.
 
+The solution adds advanced steering options, that would typically be used in Proxy Auto-Configuration (PAC) files. This solution can be used when the Explicit Proxy configuration has been "hard coded" to a device/server or doesn't support PAC files.
+
+It supports the following scenarios:
+
+- Destination IP address matches a non-routable local network (RFC1918, Link-Local, CGNAT etc) specificed in the "local_networks_dg" data-group.
+  - The BIG-IP will act as the Explicit Proxy and process the traffic.
+- The local DNS resolver has Split DNS zones where zones exist in both RFC1918 and non-RFC1918.
+  - The BIG-IP will perform a DNS resolution with the local DNS resolver
+  - If an "A" record is returned and the IP address matches the "local_networks_dg" data-group.
+    - - The BIG-IP will act as the Explicit Proxy and process the traffic.
 
 
 ## Data-Groups
