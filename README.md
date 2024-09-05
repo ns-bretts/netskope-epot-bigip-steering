@@ -16,7 +16,7 @@ It supports the following scenarios in the following order of precedence:
   - If the "A" record does not match OR NXDOMAIN:
     - Send to the Netskope EPoT and process the HTTP/S request.
 
-- Source IP addresses (10.1.1.1) or Networks (10.0.0.0/8) match the "source_ip_steering_dg".
+- Source IP addresses (e.g 10.1.1.1) or Networks (e.g 10.0.0.0/8) match the "source_ip_steering_dg".
    - IP or CIDR is this data-group with a value of "0" will be steered to Netskope EPoT.
    - IP or CIDR is this data-group with a value of "1" will be processed by the BIG-IP Explicit Proxy.
 
