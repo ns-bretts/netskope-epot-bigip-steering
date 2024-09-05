@@ -17,14 +17,14 @@ It supports the following scenarios in the following order of precedence:
     - Send to the Netskope EPoT and process the HTTP/S request.
 
 - Source IP addresses (e.g 10.1.1.1) or Networks (e.g 10.0.0.0/8) match the "source_ip_steering_dg".
-   - IP or CIDR is this data-group with a value of "0" will be steered to Netskope EPoT.
-   - IP or CIDR is this data-group with a value of "1" will be processed by the BIG-IP Explicit Proxy.
+   - IP or CIDR in this data-group with a value of "0" will be steered to Netskope.
+   - IP or CIDR in this data-group with a value of "1" will be processed by the BIG-IP Explicit Proxy.
 
-- Domains (example.com will match exact and .example.com) or FQDNs (www.example.com) match the "fqdn_steering_dg".
-   - Any Domain or FQDN is this data-group with a value of "0" will be steered to Netskope.
-   - Any Domain or FQDN is this data-group with a value of "1" will be processed by the BIG-IP Explicit Proxy.
+- Domains (example.com will match exact and *.example.com) or FQDNs (www.example.com) match the "fqdn_steering_dg".
+   - Any Domain or FQDN in this data-group with a value of "0" will be steered to Netskope.
+   - Any Domain or FQDN in this data-group with a value of "1" will be processed by the BIG-IP Explicit Proxy.
 
-Note: The default steering behaviour is to steer all traffic to Netskope EPoT.
+Note: The default steering behaviour is to steer all traffic to Netskope.
 
 ## 1. Data-Groups
 
